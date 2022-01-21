@@ -1,0 +1,136 @@
+<form #stdForm="ngForm" (ngSubmit)="onSubmit(stdForm.value)">
+    <div class="container-fluid">
+        <div class="col-12 my-5">
+            <h1 class="text" style="color: rgb(80, 80, 80);">Request CIBC FX Price Quote</h1>
+        </div>
+        <div class="container-fluid border">
+            <div class="container-fluid">
+                <div class="row mt-1">
+                    <div class="col-13 my-2">
+                        <h3 class="sub-title" style="color: rgb(120, 120, 120);">Contact Details</h3>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="mandatory" for="bName">Business Name</label>
+                        <input type="text" class="form-control" #bNameRef="ngModel" required name="bName" ngModel>
+                        <div *ngIf="bNameRef.errors && ( bNameRef.touched || bNameRef.dirty )" class="text-danger">
+                            <small [hidden]="!bNameRef.errors?.['required']">Business name is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="mandatory" for="firstName">Business Contact First Name</label>
+                        <input type="text" class="form-control" #firstName="ngModel" required name="firstName" ngModel>
+                        <div *ngIf="firstName.errors && ( firstName.touched || firstName.dirty )" class="text-danger">
+                            <small [hidden]="!firstName.errors?.['required']">Business contact first name is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="mandatory" for="lastName">Business Contact Last Name</label>
+                        <input type="text" class="form-control" #lastName="ngModel" required name="lastName" ngModel>
+                        <div *ngIf="lastName.errors && ( lastName.touched || lastName.dirty )" class="text-danger">
+                            <small [hidden]="!lastName.errors?.['required']">Business contact last name is required</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3 col-13">
+                    <div class="form-group mt-2 col-sm-4">
+                        <label for="email">Business Email</label>
+                        <input type="text" class="form-control" #emailRef="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="email@example.com" name="Email" ngModel>
+                        <div *ngIf="emailRef.errors && ( emailRef.touched || emailRef.dirty )" class="text-danger">
+                            <small [hidden]="!emailRef.errors?.['required']">Business email is required</small>
+                            <small [hidden]="!emailRef.errors?.['pattern']">Business email should be in proper format</small>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 col-sm-3">
+                        <label for="phNo">Business Phone Number</label>
+                        <input type="text" class="form-control" #phNoRef="ngModel" required maxlength="10" pattern="[0-9]{10}$" placeholder="xxxxxxxxxx" name="phNo" ngModel>
+                        <div *ngIf="phNoRef.errors && ( phNoRef.touched || phNoRef.dirty )" class="text-danger">
+                            <small [hidden]="!phNoRef.errors?.['required']">Phone Number is required</small>
+                            <small [hidden]="!phNoRef.errors?.['pattern']">Phone Number should be only 10 digits</small>
+                            <small [hidden]="!phNoRef.errors?.['minlength']">Phone Number should be only 10 digits</small>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2 col-sm-5">
+                        <label for="">Are you currently a CIBC Business Banking Client?</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" required>
+                                <option selected>Select</option>
+                                <option *ngFor="let ans of ans">{{ans}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row mt-1">
+                    <div class="col-12 my-2">
+                        <h3 class="sub-title" style="color: rgb(120, 120, 120);">Competitor Pricing Details</h3>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="">Transfer Country</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" required>
+                                <option selected>Select country</option>
+                                <option *ngFor="let country of country">{{country}}</option>        
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="mandatory" for="trsDate">Transaction Date</label>
+                        <input type="date" class="form-control" #trsDate="ngModel" required name="trsDate" ngModel>
+                        <div *ngIf="trsDate.errors && ( trsDate.touched || trsDate.dirty )" class="text-danger">
+                            <small [hidden]="!trsDate.errors?.['required']">Transaction date is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label class="mandatory" for="compName">FX Competitor Name</label>
+                        <input type="text" class="form-control" #compName="ngModel" required name="compName" ngModel>
+                        <div *ngIf="compName.errors && ( compName.touched || compName.dirty )" class="text-danger">
+                            <small [hidden]="!compName.errors?.['required']">FX competitor name is required</small>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-2 col-12">
+                        <label for="attachment1">Proof of competitor rate quote</label>
+                        <label class="text-muted" for="file1"><br>
+                            Attach quote or invoice/order with FX rate, date and time stamp
+                        </label>
+                        <div class="col-sm-7">
+                            <label class="label text-muted" for="file1"><br>
+                              Attachment 1 (required)
+                            </label>
+                            <input type="file" class="upload form-control" required accept=".pdf,.jpeg,.png,.jpg,10MB" placeholder="No file selected" #file1="ngModel" required name="file1" ngModel>
+
+                            <label class="text-muted" for="file1">
+                              Allowed file types: JPG, JPEG, PNG, PDF. In maximum size of 10MB each
+                            </label>
+                            <div *ngIf="file1.errors && ( file1.touched || file1.dirty )" class="text-danger">
+                                <small [hidden]="!file1.errors?.['required']">Proof of competitor rate quote is required</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label class="label text-muted" for="file2"><br>
+                              Attachment 2 (optional)
+                            </label>
+                            <input type="file" class="upload form-control" accept=".pdf,.jpeg,.png,.jpg,10MB" placeholder="No file selected">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 col-12">
+                        <label for="additional">Additional Information</label><br>
+                        <textarea class="form-control col-12" type="text" id="additional" rows="3"></textarea>
+                    </div>
+                    <div class="mt-3 row col-12">
+                        <div class="form-group form-check col-sm-8">
+                            <label class="form-check-label" for="gridCheck">I agree to the <a href="https://www.google.com/" style="text-decoration:none">terms and conditions</a> and submit the request</label>
+                            <input class="form-check-input" type="checkbox" #gridCheck="ngModel" name="gridCheck" ngModel>
+                            <div *ngIf="gridCheck.errors && ( gridCheck.touched || gridCheck.dirty )" class="text-danger">
+                                <small [hidden]="!gridCheck.errors?.['required']">Please agree terms and conditions</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="submit" class="col-sm-3 btn btn-danger" style="float:right;" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
