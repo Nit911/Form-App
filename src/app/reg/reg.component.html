@@ -1,5 +1,5 @@
 <form #stdForm="ngForm" (ngSubmit)="onSubmit(stdForm.value)">
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <div class="col-12 my-5">
             <h1 class="text" style="color: rgb(80, 80, 80);">Request Immigration Quote</h1>
         </div>
@@ -117,7 +117,7 @@
                         <label for="additional">Additional Information</label><br>
                         <textarea class="form-control col-12" type="text" id="additional" rows="3"></textarea>
                     </div>
-                    <div class="mt-3 row col-12">
+                    <div class="mt-4 row col-12 mb-5">
                         <div class="form-group form-check col-sm-8">
                             <label class="form-check-label" for="gridCheck">I agree to the <a href="https://www.google.com/" style="text-decoration:none">terms and conditions</a> and submit the request</label>
                             <input class="form-check-input" type="checkbox" #gridCheck="ngModel" name="gridCheck" ngModel>

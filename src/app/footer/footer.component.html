@@ -1,0 +1,26 @@
+<footer class="page-footer font-small teal pt-4 bg-dark">
+    <div class="container-fluid text-center text-md-left">
+        <div class="row">
+            <div class="col-md-6 mt-md-0 mt-3">
+                <div class="m-2 col-sm-2">
+                    <select class="language-dropdown form-select">
+                    <option *ngFor="let lang of lang">{{lang}}</option>
+                </select>
+                </div>
+                <h3 class="text-white">Raja Immigration Form</h3>
+                <label class="text-white">Student Immigration Services</label>
+            </div>
+            <hr class="clearfix w-100 d-md-none pb-3">
+            <div class="row-1 col-md-6 mb-md-0 mb-3">
+                <a class="nav-link" routerLink="Registration" class="nav-link px-2 text-muted">Student Immigration Services</a>
+                <a class="nav-link" routerLink="Privacy" class="nav-link px-2 text-muted">Privacy and Security</a>
+                <a class="nav-link" routerLink="Legal" class="nav-link px-2 text-muted">Legal</a>
+                <label for="Contact" class="text-white">  Got any questions? </label>
+                <a routerLink="Contact" class="text-muted" style="text-decoration:none"> Contact us</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3 text-muted">© 2022 Copyright :
+        <a href="https://nit911.github.io/Form-App/" style="text-decoration:none">Form-App.com</a>
+    </div>
+</footer>
